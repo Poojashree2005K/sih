@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Recognition Attendance System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Face Recognition Attendance System</h1>
+        <button id="start-attendance" onclick="startAttendance()">Start Attendance</button>
+        <button id="view-attendance" onclick="viewAttendance()">View Attendance</button>
+
+        <div id="attendance-list"></div>
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
+        <button onclick="syncFirebase()">Sync with Firebase</button>
+    </div>
+
+    
+
+<script>
+    function syncFirebase() {
+        fetch('/sync_firebase')
+            .then(response => response.json())
+            .then(data => alert(data.message || data.error))
+            .catch(error => console.error('Error:', error));
+    }
+</script>
+
+</body>
+</html>
